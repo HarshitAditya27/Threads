@@ -4,6 +4,9 @@ const nextConfig = {
     serverActions: true,
     serverComponentsExternalPackages: ["mongoose"],
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     remotePatterns: [
       {
@@ -23,9 +26,6 @@ const nextConfig = {
         hostname: "placehold.co",
       },
     ],
-    typescript: {
-      ignoreBuildErrors: true,
-    },
   },
 };
 

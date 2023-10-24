@@ -1,9 +1,10 @@
 "use client";
-
-import { useForm } from "react-hook-form";
 import * as z from "zod";
+import Image from "next/image";
+import { useForm } from "react-hook-form";
+import { usePathname, useRouter } from "next/navigation";
+import { ChangeEvent, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { userValidation } from "@/lib/validations/user";
 
 import {
   Form,
@@ -15,13 +16,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
-import Image from "next/image";
 import { Textarea } from "../ui/textarea";
-import { ChangeEvent, useState } from "react";
+
 import { useUploadThing } from "@/lib/uploadthing";
 import { isBase64Image } from "@/lib/utils";
+
+import { userValidation } from "@/lib/validations/user";
 import { updateUser } from "@/lib/actions/user.actions";
-import { usePathname, useRouter } from "next/navigation";
 
 interface Props {
   user: {
@@ -70,6 +71,7 @@ export default function AccountProfile({ user, btnTitle }: Props) {
       image: values.profile_photo,
       path: pathname,
     });
+
     if (pathname === "/profile/edit") {
       router.back();
     } else {
@@ -112,7 +114,7 @@ export default function AccountProfile({ user, btnTitle }: Props) {
                 {field.value ? (
                   <Image
                     src={field.value}
-                    alt="profile photo"
+                    alt="profile_icon"
                     width={96}
                     height={96}
                     priority
@@ -121,7 +123,7 @@ export default function AccountProfile({ user, btnTitle }: Props) {
                 ) : (
                   <Image
                     src="/assets/profile.svg"
-                    alt="profile photo"
+                    alt="profile_icon"
                     width={24}
                     height={24}
                     className="object-contain"
@@ -130,7 +132,7 @@ export default function AccountProfile({ user, btnTitle }: Props) {
               </FormLabel>
               <FormControl className="flex-1 text-base-semibold text-gray-200">
                 <Input
-                  placeholder="Upload a photo"
+                  placeholder="Add profile photo"
                   type="file"
                   accept="image/*"
                   className="account-form_image-input"
