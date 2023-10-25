@@ -14,10 +14,7 @@ function Topbar() {
           width={28}
           height={28}
         />
-        <p className="text-heading3-bld text-light-1 max-xs:hidden">
-          {" "}
-          Threads{" "}
-        </p>
+        <p className=" text-light-1 max-xs:hidden"> Threads </p>
       </Link>
       <div className="flex items-center gap-1">
         <div className="block md:hidden">
